@@ -1,15 +1,15 @@
-import * as model from './model.js';
-import { MODAL_CLOSE_SEC } from './config.js';
-import recipeView from './views/recipeView.js';
-import searchView from './views/searchView.js';
-import resultsView from './views/resultsView.js';
-import paginationView from './views/paginationView.js';
-import bookmarksView from './views/bookmarksView.js';
-import addRecipeView from './views/addRecipeView.js';
+import * as model from "./model.js";
+import { MODAL_CLOSE_SEC } from "./config.js";
+import recipeView from "./views/recipeView.js";
+import searchView from "./views/searchView.js";
+import resultsView from "./views/resultsView.js";
+import paginationView from "./views/paginationView.js";
+import bookmarksView from "./views/bookmarksView.js";
+import addRecipeView from "./views/addRecipeView.js";
 
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import { async } from 'regenerator-runtime';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import { async } from "regenerator-runtime";
 
 // if (module.hot) {
 //   module.hot.accept();
@@ -76,7 +76,7 @@ const controlPagination = function (goToPage) {
   // 3) render new results
 
   // resultsView.render(model.state.search.results);
-  resultsView.render(model.getSeaarchResultsPage(goToPage));
+  resultsView.render(model.getSearchResultsPage(goToPage));
 
   // 4) Render new pagination buttons
   paginationView.render(model.state.search);
@@ -138,14 +138,14 @@ const controlAddRecipe = async function (newRecipe) {
     bookmarksView.render(model.state.bookmarks);
 
     //Change id in url
-    window.history.pushState(null, '', `#${model.state.recipe.id}`);
+    window.history.pushState(null, "", `#${model.state.recipe.id}`);
 
     //Close form window
     setTimeout(function () {
       addRecipeView.toggleWindow();
     }, MODAL_CLOSE_SEC * 1000);
   } catch (err) {
-    console.error('💥', err);
+    console.error("💥", err);
     addRecipeView.renderError(err.message);
   }
 };
